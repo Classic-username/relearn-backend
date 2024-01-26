@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static("public"));
+
 // This responds with a "Hello World GET" on the homepage
 app.get("/", (req, res) =>  {
     console.log("Got a GET request for the")
