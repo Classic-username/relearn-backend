@@ -1,11 +1,23 @@
 <html>
-   <body>
+    <body>
       
-      <form action = "http://127.0.0.1:8081/process_get" method = "GET">
-         First Name: <input type = "text" name = "first_name">  <br>
-         Last Name: <input type = "text" name = "last_name">
-         <input type = "submit" value = "Submit">
-      </form>
+        <label for="form get">Form Get</label>
+        <form action = "http://127.0.0.1:8081/process_get" method = "GET" id="form get">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name">  <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name">
+            <input type="submit" value="Submit">
+        </form>
+
+        <label for="form post">Form Post</label>
+        <form action = "http://127.0.0.1:8081/process_post" method = "POST" id="form post">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name">  <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name">
+            <input type="submit" value="Submit">
+        </form>
       
-   </body>
+    </body>
 </html>

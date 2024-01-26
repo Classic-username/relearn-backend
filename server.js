@@ -1,12 +1,13 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
 
 app.use(express.static("public"));
 
 // Delving into things I am struggling to comprehend
 app.use("/index.htm", (req, res) => {
     res.sendFile(__dirname + "/" + "index.htm");
-})
+});
 
 app.get("/process_get", (req, res) => {
     // Prepare output in JSON format
@@ -16,8 +17,21 @@ app.get("/process_get", (req, res) => {
     };
     console.log(response);
     res.end(JSON.stringify(response));
-})
+});
 // end delv one
+
+// Delving into struggle part two
+var urlencodedParser = bodyParser.urlencoded({ extended: false});
+app.post("/process_post", urlencodedParser, (req, res) => {
+    // PREPARE OUTPUT IN JSON FORMAT!!!
+    response = {
+        first_name:req.body.first_name,
+        last_name:req.body.last_name
+    };
+    console.log(response);
+    res.end(JSON.stringify(response));
+});
+
 
 // This responds with a "Hello World GET" on the homepage
 app.get("/", (req, res) =>  {
@@ -54,4 +68,4 @@ var server = app.listen(8081, () => {
     var port = server.address().port;
 
     console.log(`Example app listening at http://${host}:${port}`);
-})
+});
