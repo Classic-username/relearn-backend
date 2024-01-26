@@ -3,6 +3,22 @@ var app = express();
 
 app.use(express.static("public"));
 
+// Delving into things I am struggling to comprehend
+app.use("/index.htm", (req, res) => {
+    res.sendFile(__dirname + "/" + "index.htm");
+})
+
+app.get("/process_get", (req, res) => {
+    // Prepare output in JSON format
+    response = {
+        first_name:req.query.first_name,
+        last_name:req.query.last_name
+    };
+    console.log(response);
+    res.end(JSON.stringify(response));
+})
+// end delv one
+
 // This responds with a "Hello World GET" on the homepage
 app.get("/", (req, res) =>  {
     console.log("Got a GET request for the")
