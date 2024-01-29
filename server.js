@@ -3,9 +3,11 @@ var app = express();
 var bodyParser = require("body-parser");
 var fs = require("fs");
 var multer = require("multer");
+var cookieParser = require("cookie-parser");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 // This is how the project wanted us to implement multer, but it isn't working when I run the server file. ChatGPT has provided a fix
 // app.use(multer({ dest: "/tmp" }));
 
@@ -54,7 +56,8 @@ app.post("/process_post", urlencodedParser, (req, res) => {
 
 // This responds with a "Hello World GET" on the homepage
 app.get("/", (req, res) =>  {
-    console.log("Got a GET request for the")
+    console.log("Got a GET request for the homepage")
+    console.log("Cookies: ", req.cookies);
     res.send("Hello World GET");
 });
 
@@ -110,9 +113,7 @@ app.post("/file_upload", upload.single("file"), (req, res) => {
             res.end( JSON.stringify( response ));
         })
     } )
-})
-
-
+});
 
 var server = app.listen(8081, () => {
     var host = server.address().address;
